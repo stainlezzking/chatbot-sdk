@@ -1,8 +1,8 @@
 import { THEMESTYLES } from "./constants.js";
 
-type ThemeType = typeof THEMESTYLES.LIGHT | typeof THEMESTYLES.DARK;
+export type ThemeType = typeof THEMESTYLES.LIGHT | typeof THEMESTYLES.DARK;
 
-type InitConfig = {
+export type InitConfig = {
   position: string;
   buttonColor: string;
   theme: string;
@@ -13,9 +13,20 @@ export type AppStateType = {
   open: boolean;
   loading: boolean;
   theme: ThemeType;
+  isInitialized: boolean;
 };
 
-export type InitType = {
-  apiKey: string;
-  config: Partial<InitConfig>;
+export type AdminUser = {
+  name: string;
+};
+
+export type ElementsTypes = {
+  unreadCountElement: HTMLSpanElement | null;
+  iframeWrapper: HTMLDivElement | null;
+};
+
+export type eventTrack = {
+  element: HTMLElement;
+  event: string;
+  callback: () => void;
 };
