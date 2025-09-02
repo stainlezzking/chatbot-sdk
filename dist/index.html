@@ -4,25 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <title>Chat bot Application</title>
   </head>
-  <body>
-    <h1 class="text-red-500 font-bold">HEllo worlds</h1>
-
-    <div class=""></div>
+  <body class="overflow-hidden">
+    <div class="flex h-screen w-screen items-center justify-center">
+      <h1 class="font-bold text-2xl sm:text-3xl md:text-5xl">
+        AZUKA THE GREAT
+      </h1>
+    </div>
   </body>
   <script src="./app.js"></script>
   <script>
     const widget = new SupportWidget();
-    widget.init("", { position: "bottom-left" });
-
-    widget.updateUnreadCount("30");
+    widget.init("", {
+      position: "bottom-left",
+      autoOpen: true,
+      welcomeMessage: "How may we be of help today",
+    });
   </script>
-  <!-- <script src="./widget.js"></script> -->
-
-  <!-- <script>
-    const widget = new CustomerSupportWidget({
-      chatUrl: "https://your-chat-service.com",
-    }).init();
-  </script> -->
 </html>

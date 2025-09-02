@@ -1,20 +1,26 @@
-import type { AdminUser, InitConfig } from "./modules/types.js";
+import type { AdminUser, InitConfig, sendMessageMetaData } from "./modules/types.js";
 export default class SupportWidget {
-    private state;
-    private iframeSrc;
-    private eventsTracker;
+    #private;
+    addEventListener(type: string, listener: EventListener): void;
+    removeEventListener(type: string, listener: EventListener): void;
+    dispatchEvent(event: Event): void;
     private elements;
     constructor();
     init(apiKey: string, config?: Partial<InitConfig>): this;
-    open(): void;
-    close(): void;
-    toggle(): void;
-    destroy(): this | undefined;
+    open(): this;
+    sendMessage(text: string, metadata: sendMessageMetaData): void;
+    close(): this;
+    toggle(): this;
+    destroy(): this;
     setUser(userInfo: AdminUser): void;
-    updateUnreadCount(count: string): this;
+    updateUnreadCount(count: number): this;
     private createButton;
     private createIframe;
     private applyButtonStyles;
     private applyWrapperStyles;
+    private sendToIframe;
+    private attachEventListeners;
+    private widgetOpenedCallback;
+    private widgetCloseCallback;
 }
 //# sourceMappingURL=app.d.ts.map

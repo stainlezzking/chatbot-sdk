@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,10 +27,16 @@
           alt="profile picture of the support staff"
         />
         <div>
-          <h1 class="text-lg font-medium text-dark-1 dark:text-white">
+          <h1
+            id="username"
+            class="text-lg font-medium text-dark-1 dark:text-white"
+          >
             Christopher Campbell
           </h1>
-          <p class="text-green-950 font-medium text-sm dark:text-light-3">
+          <p
+            id="status"
+            class="text-green-950 font-medium text-sm dark:text-light-3"
+          >
             Active
           </p>
         </div>
@@ -56,7 +62,7 @@
                 <li
                   class="bg-[#0F82FF] px-4 py-3 w-fit text-white rounded-r-xl last:rounded-bl-2xl"
                 >
-                  I was asking for your New Year Plans,  ask we are going to host a
+                  I was asking for your New Year Plans, ask we are going to host a
                   party.
                 </li>
               </ul>
@@ -120,9 +126,10 @@
     });
 
     const addMessage = function (message, agentTruthy = false) {
-      const lastchild = messagebox.lastElementChild ?? messagebox;
-      if (agentTruthy) agentMessage(message, !(lastchild.tagName == "DIV"));
-      else userMessages(message, !(lastchild.tagName == "UL"));
+      const lastchild = messagebox.lastElementChild;
+      if (agentTruthy)
+        agentMessage(message, !lastchild || !(lastchild.tagName == "DIV"));
+      else userMessages(message, !lastchild || !(lastchild.tagName == "UL"));
 
       messagebox.scrollTop = messagebox.scrollHeight;
     };
@@ -185,5 +192,31 @@
     };
 
     // on first message, send a response back saying we have got your response, we will respond shortly
+
+    window.addEventListener("message", (event) => {
+      if (event.data.type == "theme") {
+        const color = event.data.payload ?? "light";
+        document.documentElement.classList.remove("light", "dark");
+        document.documentElement.classList.add(color);
+      }
+      if (event.data.type == "set-user") {
+        const payload = event.data.payload ?? { name: "Fallback Username" };
+        document.getElementById("username").innerHTML = payload.name;
+        document.getElementById("status").innerHTML = payload.isOnline
+          ? "Online"
+          : "Offline";
+      }
+      if (event.data.type == "send-message") {
+        const payload = event.data.payload;
+        if (!payload.message) return;
+
+        addMessage(payload.message, payload.isAdmin);
+        if (payload.isAdmin)
+          event.source.postMessage(
+            { type: "new-message", message: payload.message },
+            event.origin
+          );
+      }
+    });
   </script>
 </html>

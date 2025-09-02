@@ -12,8 +12,8 @@ export const buttonStyles: Partial<CSSStyleDeclaration> = {
 };
 
 export const buttonSpanStyle: Partial<CSSStyleDeclaration> = {
-  top: "-5px",
-  right: "-3px",
+  top: "-3px",
+  right: "-2px",
   display: "flex",
   borderRadius: "100%",
   width: "20px",
@@ -37,4 +37,13 @@ export const wrapperStyles: Partial<CSSStyleDeclaration> = {
   gap: "1rem",
   borderRadius: "20px",
   width: "fit-content",
+};
+
+export const iframeWrapperStyles: Partial<CSSStyleDeclaration> = {
+  display: "none",
+  maxWidth: "100%",
+  maxHeight: "100vh",
+  height: "70vh",
+  boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)",
+  borderRadius: "0.5rem",
 };
