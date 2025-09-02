@@ -2,6 +2,8 @@ import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import copy from "rollup-plugin-copy";
 import terser from "@rollup/plugin-terser";
+import serve from "rollup-plugin-serve";
+import livereload from "rollup-plugin-livereload";
 
 export default {
   input: "src/app.ts",
@@ -25,5 +27,11 @@ export default {
       watch: "src/iframe",
     }),
     terser(),
+    serve({
+      open: true,
+      contentBase: "dist",
+      port: 3000,
+    }),
+    livereload("dist"),
   ],
 };
