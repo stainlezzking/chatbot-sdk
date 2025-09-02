@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "concurrently \"npm run dev:rollup\" \"npm run dev:tailwind\"",
     "dev:rollup": "rollup -c -w",
-    "dev:tailwind": "tailwindcss -i ./src/iframe/chatbox.css -o ./dist/iframe/chatbox.css --watch"
+    "dev:tailwind": "tailwindcss -i ./src/iframe/chatbox.css -o ./demo/dist/iframe/chatbox.css --watch"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^16.0.1",

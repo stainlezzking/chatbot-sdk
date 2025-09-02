@@ -9,7 +9,7 @@ export default {
   input: "src/app.ts",
   output: [
     {
-      file: "dist/app.js",
+      file: "demo/dist/app.js",
       format: "umd",
       name: "SupportWidget",
       sourcemap: true,
@@ -23,15 +23,15 @@ export default {
     resolve({ extensions: [".ts", ".js"] }),
     typescript(),
     copy({
-      targets: [{ src: "src/iframe/chatbox.html", dest: "dist/iframe" }],
+      targets: [{ src: "src/iframe/chatbox.html", dest: "demo/dist/iframe" }],
       watch: "src/iframe",
     }),
     terser(),
     serve({
       open: true,
-      contentBase: "dist",
+      contentBase: "demo",
       port: 3000,
     }),
-    livereload("dist"),
+    livereload("demo"),
   ],
 };
