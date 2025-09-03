@@ -2,7 +2,6 @@ import type { AdminUser, InitConfig, sendMessageMetaData } from "./modules/types
 export default class SupportWidget {
     #private;
     addEventListener(type: string, listener: EventListener): void;
-    removeEventListener(type: string, listener: EventListener): void;
     dispatchEvent(event: Event): void;
     private elements;
     constructor();
@@ -23,4 +22,4 @@ export default class SupportWidget {
     private widgetOpenedCallback;
     private widgetCloseCallback;
 }
-//# sourceMappingURL=app.d.ts.map
+//# sourceMappingURL=widget.d.ts.map

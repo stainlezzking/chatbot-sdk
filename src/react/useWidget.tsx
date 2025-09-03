@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import SupportWidget from "../app.js";
+import SupportWidget from "../widget.js";
 import { CUSTEVENTS } from "../modules/constants.js";
 
 interface WidgetOptions {

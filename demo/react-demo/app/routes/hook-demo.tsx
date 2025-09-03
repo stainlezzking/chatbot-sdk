@@ -1,5 +1,5 @@
-import type { Route } from "./+types/home";
-import { useWidget } from "../../../../src/react/useWidget";
+import type { Route } from "./+types/home.js";
+import { useWidget } from "../../../../src/react/useWidget.js";
 import { useState } from "react";
 
 export function meta({}: Route.MetaArgs) {

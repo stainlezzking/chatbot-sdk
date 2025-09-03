@@ -6,10 +6,10 @@ import serve from "rollup-plugin-serve";
 import livereload from "rollup-plugin-livereload";
 
 export default {
-  input: "src/app.ts",
+  input: "src/widget.ts",
   output: [
     {
-      file: "demo/dist/app.js",
+      file: "demo/dist/widget.js",
       format: "umd",
       name: "SupportWidget",
       sourcemap: true,

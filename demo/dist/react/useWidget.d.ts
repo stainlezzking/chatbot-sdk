@@ -1,4 +1,4 @@
-import SupportWidget from "../app.js";
+import SupportWidget from "../widget.js";
 interface WidgetOptions {
     position?: string;
     buttonColor?: string;

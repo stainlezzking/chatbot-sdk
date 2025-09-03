@@ -1,5 +1,5 @@
 import { useEffect, useRef, useImperativeHandle, forwardRef } from "react";
-import SupportWidget from "../app.js";
+import SupportWidget from "../widget.js";
 import { CUSTEVENTS } from "../modules/constants.js";
 import type { InitConfig } from "../modules/types.js";
 

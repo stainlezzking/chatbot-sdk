@@ -1,7 +1,7 @@
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/home.js";
 import SupportWidgetComponent, {
   type WidgetRef,
-} from "../../../../src/react/widget";
+} from "../../../../src/react/widget-component.js";
 import { useRef } from "react";
 
 export function meta({}: Route.MetaArgs) {
