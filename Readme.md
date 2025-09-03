@@ -25,7 +25,7 @@ Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/stainlezzking/chatbot-sdk.git
-cd support-widget
+cd chatbot-sdk
 npm install
 ```
 
