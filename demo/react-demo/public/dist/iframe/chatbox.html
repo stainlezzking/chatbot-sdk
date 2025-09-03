@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatBox Assessment</title>
+    <!-- <link rel="stylesheet" href="../../dist/iframe/chatbox.css" /> -->
+    <link rel="stylesheet" href="./chatbox.css" />
+    <style>
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="h-screen">
+    <div class="shadow-md rounded flex flex-col h-full">
+      <div
+        class="shrink-0 flex dark:bg-[#001835] bg-white items-center py-2 px-3 gap-x-2"
+      >
+        <img
+          src="/public/profile.png"
+          class="w-10 h-10 bg-black rounded-full block"
+          alt="profile picture of the support staff"
+        />
+        <div>
+          <h1
+            id="username"
+            class="text-lg font-medium text-dark-1 dark:text-white"
+          >
+            Christopher Campbell
+          </h1>
+          <p
+            id="status"
+            class="text-green-950 font-medium text-sm dark:text-light-3"
+          >
+            Active
+          </p>
+        </div>
+      </div>
+      <!-- message box -->
+      <div
+        id="messagebox"
+        class="scrollbar-hide grow bg-light-3 dark:bg-dark-1 p-2 space-y-4 overflow-y-scroll overflow-hidden"
+      >
+        <!-- Agents bloc -->
+        <!-- <div class="flex gap-x-2">
+              <img
+                src="#"
+                class="w-7 h-7 bg-black rounded-full block"
+                alt="sender message"
+              />
+              <ul class="space-y-1 max-w-[80%]">
+                <li
+                  class="bg-[#0F82FF] px-4 py-3 w-fit text-white rounded-r-xl last:rounded-bl-xl"
+                >
+                  Hey, How are you?
+                </li>
+                <li
+                  class="bg-[#0F82FF] px-4 py-3 w-fit text-white rounded-r-xl last:rounded-bl-2xl"
+                >
+                  I was asking for your New Year Plans, ask we are going to host a
+                  party.
+                </li>
+              </ul>
+            </div> -->
+
+        <!-- Active users block -->
+        <!-- <ul class="space-y-1 flex items-end flex-col max-w-[80%] ms-auto">
+              <li
+                class="bg-[#001835] px-4 py-3 w-fit text-white rounded-l-xl last:rounded-br-xl"
+              >
+                I am fine, How about you?
+              </li>
+              <li
+                class="bg-[#001835] px-4 py-3 w-fit text-white rounded-l-xl last:rounded-br-xl"
+              >
+                Yayy, Great I would love to join the party!
+              </li>
+            </ul> -->
+      </div>
+      <!-- message box end -->
+      <form id="addMessage" class="shrink-0 w-full flex">
+        <input
+          type="text"
+          placeholder="Type your Message..."
+          class="placeholder:text-[#A6ADB5] bg-white dark:bg-[#001835] dark:text-white w-full py-3 ps-3 focus:border-none focus:outline-none"
+        />
+        <button
+          disabled
+          class="disabled:fill-[#A6ADB5] dark:bg-[#001835] dark:fill-white fill-[#0F82FF] bg-white block cursor-pointer py-2 px-4 disabled:cursor-not-allowed"
+          id="send"
+        >
+          <!-- width="46"
+                height="46" -->
+          <svg width="25" height="25" viewBox="0 0 46 46">
+            <path
+              d="M1.37838 15.9587C0.20388 15.5672 0.19263 14.935 1.40088 14.5322L44.3466 0.217719C45.5369 -0.178281 46.2186 0.487719 45.8856 1.65322L33.6141 44.5967C33.2766 45.787 32.5904 45.8275 32.0864 44.698L23.9999 26.5L37.4999 8.49997L19.4999 22L1.37838 15.9587Z"
+              fill="inherit"
+            />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </body>
+  <script>
+    const form = document.getElementById("addMessage");
+    const sendButton = document.getElementById("send");
+    const input = form.getElementsByTagName("input")[0];
+    const messagebox = document.getElementById("messagebox");
+
+    input.addEventListener("keyup", function (e) {
+      if (!input.value.trim()) sendButton.disabled = true;
+      else sendButton.disabled = false;
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const value = input.value;
+      input.value = "";
+      sendButton.disabled = true;
+      addMessage(value);
+    });
+
+    const addMessage = function (message, agentTruthy = false) {
+      const lastchild = messagebox.lastElementChild;
+      if (agentTruthy)
+        agentMessage(message, !lastchild || !(lastchild.tagName == "DIV"));
+      else userMessages(message, !lastchild || !(lastchild.tagName == "UL"));
+
+      messagebox.scrollTop = messagebox.scrollHeight;
+    };
+
+    const agentMessage = function (message, newMessageTruthy) {
+      if (newMessageTruthy) {
+        const incoming = `
+        <div class="flex gap-x-2">
+          <img
+            src="/public/profile.png"
+            class="w-7 h-7 bg-black rounded-full block"
+            alt="sender message"
+          />
+          <ul class="space-y-1 max-w-[80%]">
+            <li
+              class="bg-[#0F82FF] px-4 py-3 w-fit text-white rounded-r-xl last:rounded-bl-xl"
+            >
+              ${message}
+            </li>
+          </ul>
+        </div>
+                `;
+        messagebox.innerHTML += incoming;
+        return;
+      }
+      const incoming = `
+         <li class="bg-[#0F82FF] px-4 py-3 w-fit text-white rounded-r-xl last:rounded-bl-xl">
+              ${message}
+            </li>
+      `;
+      const pile = messagebox.lastElementChild.getElementsByTagName("ul")[0];
+      if (pile == null) {
+        console.log("Couldnt add message to the box because no embeded UL tag");
+        return;
+      }
+      pile.innerHTML += incoming;
+      return;
+    };
+
+    const userMessages = function (message, newMessageTruthy) {
+      if (newMessageTruthy) {
+        const sending = `
+        <ul class="space-y-1 flex items-end flex-col max-w-[80%] ms-auto">
+          <li
+            class="bg-[#001835] px-4 py-3 w-fit text-white rounded-l-xl last:rounded-br-xl"
+          >
+           ${message}
+          </li>
+        </ul>
+            `;
+        messagebox.innerHTML += sending;
+        return;
+      }
+      const sending = `
+       <li class="bg-[#001835] px-4 py-3 w-fit text-white rounded-l-xl last:rounded-br-xl" >
+           ${message}
+          </li>`;
+      messagebox.lastElementChild.innerHTML += sending;
+      return;
+    };
+
+    // on first message, send a response back saying we have got your response, we will respond shortly
+
+    window.addEventListener("message", (event) => {
+      if (event.data.type == "theme") {
+        const color = event.data.payload ?? "light";
+        document.documentElement.classList.remove("light", "dark");
+        document.documentElement.classList.add(color);
+      }
+      if (event.data.type == "set-user") {
+        const payload = event.data.payload ?? { name: "Fallback Username" };
+        document.getElementById("username").innerHTML = payload.name;
+        document.getElementById("status").innerHTML = payload.isOnline
+          ? "Online"
+          : "Offline";
+      }
+      if (event.data.type == "send-message") {
+        const payload = event.data.payload;
+        if (!payload.message) return;
+
+        addMessage(payload.message, payload.isAdmin);
+        if (payload.isAdmin)
+          event.source.postMessage(
+            { type: "new-message", message: payload.message },
+            event.origin
+          );
+      }
+    });
+  </script>
+</html>

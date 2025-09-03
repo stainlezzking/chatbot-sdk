@@ -21,9 +21,19 @@ export default {
   ],
   plugins: [
     resolve({ extensions: [".ts", ".js"] }),
-    typescript(),
+    typescript({
+      tsconfig: "./tsconfig.json",
+      include: ["src/**/*"],
+      exclude: ["demo/react-demo/**"],
+    }),
     copy({
-      targets: [{ src: "src/iframe/chatbox.html", dest: "demo/dist/iframe" }],
+      targets: [
+        { src: "src/iframe/chatbox.html", dest: "demo/dist/iframe" },
+        {
+          src: "src/iframe/chatbox.html",
+          dest: "demo/react-demo/public/dist/iframe",
+        },
+      ],
       watch: "src/iframe",
     }),
     terser(),
@@ -34,4 +44,7 @@ export default {
     }),
     livereload("demo"),
   ],
+  watch: {
+    exclude: "demo/react-demo/**",
+  },
 };

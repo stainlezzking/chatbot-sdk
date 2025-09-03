@@ -9,7 +9,6 @@ import type {
   AdminUser,
   AppStateType,
   ElementsTypes,
-  eventTrack,
   IframeMessges,
   InitConfig,
   sendMessageMetaData,
@@ -36,7 +35,7 @@ export default class SupportWidget {
     this.#eventTarget.addEventListener(type, listener);
   }
 
-  removeEventListener(type: string, listener: EventListener) {
+  #removeEventListener(type: string, listener: EventListener) {
     this.#eventTarget.removeEventListener(type, listener);
   }
 
