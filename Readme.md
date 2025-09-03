@@ -1,18 +1,19 @@
 # Customer Support Widget
 
-A lightweight, embeddable customer support chat widget built with **vanilla JavaScript**.  
-It can be added to any website with a single `<script>` tag and provides a simple API for customization, messaging, and event handling.
+The **Customer Support Widget** is a lightweight, embeddable chat widget built with **vanilla JavaScript**.  
+It can be added to any website with a single `<script>` tag or seamlessly integrated into React applications using the provided hook and component.
 
 ---
 
 ## 🚀 Features
 
-- Floating, customizable chat button (position, color, theme, welcome message)
-- Iframe-based chat interface
+- Floating, customizable chat button, Support for themes,auto-open behavior, and welcome messages.
+- A customizable chat interface rendered inside an iframe.
+- A simple, developer-friendly API for configuration, messaging, and event handling.
 - Responsive and mobile-friendly design
 - Clean API (`init`, `open`, `close`, `toggle`, `destroy`, etc.)
 - Event system for reacting to widget actions
-- PostMessage API for parent–iframe communication
+- Reliable communication between the parent application and the iframe using `postMessage`.
 - Unread message counter
 - Browser notifications for new messages when the widget is closed
 
@@ -23,33 +24,8 @@ It can be added to any website with a single `<script>` tag and provides a simpl
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/...
-cd support-widget
-npm install
-```
-
-```bash
-npm run dev
-```
-
-# Support Widget SDK
-
-A lightweight, customizable **chat support widget** that can be embedded in any application.
-
-The widget works in:
-
-- **Vanilla HTML/JavaScript** (via script integration)
-- **React applications** (via hook or component syntax)
-
-It provides a clean API for initializing, opening/closing, sending messages, handling events, and managing user state. Communication between the parent app and the embedded chat iframe is powered by **`postMessage`**, making it secure and flexible.
-
-## 📦 Installation
-
-Clone the repository and install dependencies:
-
-```bash
 git clone https://github.com/stainlezzking/chatbot-sdk.git
-cd chatbot-sdk
+cd support-widget
 npm install
 ```
 
@@ -78,7 +54,7 @@ For the React integration example, go into the `react-demo` folder and run:
 ```bash
 cd demo/react-demo
 npm install
-npm start
+npm run dev
 ```
 
 This runs the demo React app with the widget integrated via hooks and components.
